@@ -1,7 +1,11 @@
 import { defineCustomElement as VueDefineCustomElement, h, createApp, getCurrentInstance } from 'vue'
 import { Quasar } from 'quasar'
-// Import Quasar css
+
+//TODO: Import Quasar css
 import quasarStyles from 'quasar/src/css/index.sass'
+import Toast from "vue-toastification";
+import toastStyles from "vue-toastification/dist/index.css";
+import { minify } from './utils/strings'
 
 const linksLoader = (urls) => {
   urls.forEach(url => {
@@ -12,13 +16,27 @@ const linksLoader = (urls) => {
   });
 }
 
+function asyncGetContainer() {
+  return new Promise(resolve => {
+    const observer = new MutationObserver(function(mutations, me) {
+      const myContainer = document.querySelector('glasson-helloo').shadowRoot.querySelector('body')
+      if (myContainer) {
+        me.disconnect();
+        resolve(myContainer);
+      }
+    });
+    observer.observe(document, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
 export const defineCustomElement = (component) => VueDefineCustomElement({
   props: component.props,
-  styles: [quasarStyles.replaceAll(':root', ':host'), ...component.styles].map(item => item.replace(/\n/g, '')),
+  styles: [quasarStyles.replaceAll(':root', ':host'), toastStyles, ...component.styles].map(minify),
   setup(props, ctx) {
-    component.setup(props, ctx)
-    const app = createApp(component).use(Quasar)
-
+    // *: Attach link loaders
     linksLoader([
       {
         rel: 'preconnect',
@@ -31,12 +49,26 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons',
-      },
+      }
     ]);
 
+    // ?: Make sure instance founded
     const inst = getCurrentInstance()
-    Object.assign(inst.appContext, app._context)
-    Object.assign(inst.provides, app._context.provides)
+    
+    // ?: modifier instance with plugins
+    const app = createApp(component)
+      .use(Quasar)
+      .use(Toast, {
+        container: asyncGetContainer
+      })
+
+    // *: dependecies injection
+    if (inst) {
+      component.setup(props, ctx)
+      Object.assign(inst.appContext, app._context)
+      Object.assign(inst.provides, app._context.provides)
+    }
+
     return () => h(component, props)
-  },
+  }
 })
