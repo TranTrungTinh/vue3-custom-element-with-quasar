@@ -1,1 +1,0 @@
-export const minify = (resource) => resource.replace(/^\s+|\r\n|\n|\r|(>)\s+(<)|\s+$/gm, '$1$2')

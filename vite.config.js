@@ -3,9 +3,7 @@ import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 import eslintPlugin from 'vite-plugin-eslint';
-// import icons from 'unplugin-icons/vite'
-// import IconsResolver from 'unplugin-icons/resolver'
-// import components from 'unplugin-vue-components/vite'
+import svgLoader from 'vite-svg-loader'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,6 +21,7 @@ export default defineConfig({
     quasar({
       sassVariables: 'src/assets/scss/variables.scss'
     }),
+    svgLoader(),
     eslintPlugin({
       fix: true
     })

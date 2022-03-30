@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="app-container">
+    <div class="app-container shadow-7">
       <slot name="header" />
       <slot />
       <div class="app-container__footer">

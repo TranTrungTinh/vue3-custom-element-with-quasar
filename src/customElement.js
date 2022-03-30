@@ -1,40 +1,20 @@
 import { defineCustomElement as VueDefineCustomElement, h, createApp, getCurrentInstance } from 'vue'
 import { Quasar } from 'quasar'
+import Toast from "vue-toastification"
 
-//TODO: Import Quasar css
+//TODO: Import lib css
 import quasarStyles from 'quasar/src/css/index.sass'
-import Toast from "vue-toastification";
-import toastStyles from "vue-toastification/dist/index.css";
-import { minify } from './utils/strings'
+import toastStyles from "vue-toastification/dist/index.css"
 
-const linksLoader = (urls) => {
-  urls.forEach(url => {
-    const link = document.createElement('link');
-    link.rel = url.rel
-    link.href = url.href;
-    document.head.appendChild(link);
-  });
-}
-
-function asyncGetContainer() {
-  return new Promise(resolve => {
-    const observer = new MutationObserver(function(mutations, me) {
-      const myContainer = document.querySelector('glasson-helloo').shadowRoot.querySelector('body')
-      if (myContainer) {
-        me.disconnect();
-        resolve(myContainer);
-      }
-    });
-    observer.observe(document, {
-      childList: true,
-      subtree: true
-    });
-  });
-}
+import { linksLoader, styleLoader, modifyRoot, asyncGetContainer } from '@/utils/build'
 
 export const defineCustomElement = (component) => VueDefineCustomElement({
   props: component.props,
-  styles: [quasarStyles.replaceAll(':root', ':host'), toastStyles, ...component.styles].map(minify),
+  styles: styleLoader(
+    modifyRoot(quasarStyles),
+    toastStyles,
+    ...component.styles
+  ),
   setup(props, ctx) {
     // *: Attach link loaders
     linksLoader([
@@ -48,7 +28,11 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Material+Icons',
       }
     ]);
 
