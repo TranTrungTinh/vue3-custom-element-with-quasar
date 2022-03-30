@@ -33,6 +33,11 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Material+Icons',
+      },
+      // ? Css reset
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css'
       }
     ]);
 

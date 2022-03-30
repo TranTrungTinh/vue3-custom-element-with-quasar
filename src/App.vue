@@ -23,7 +23,7 @@ export default defineComponent({
     const isShow = ref(false)
     const isFrame = ref(false)
     const toast = useToast();
-    
+
      function showModal () {
       isShow.value = true
     }
@@ -165,7 +165,7 @@ export default defineComponent({
         <div class="row bg-white q-py-sm">
           <div class="col-4 text-center">
             <q-btn
-              color="red" 
+              color="red"
               icon="favorite"
               padding="xs md"
               dense
