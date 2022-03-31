@@ -1,11 +1,12 @@
 import { defineCustomElement as VueDefineCustomElement, h, createApp, getCurrentInstance } from 'vue'
 import { Quasar } from 'quasar'
+import { createPinia } from 'pinia'
 import Toast from "vue-toastification"
 
 //TODO: Import lib css
 import quasarStyles from 'quasar/src/css/index.sass'
 import toastStyles from "vue-toastification/dist/index.css"
-
+import dialogStyles from 'gitart-vue-dialog/dist/style.css'
 import { linksLoader, styleLoader, modifyRoot, asyncGetContainer } from '@/utils/build'
 
 export const defineCustomElement = (component) => VueDefineCustomElement({
@@ -13,6 +14,7 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
   styles: styleLoader(
     modifyRoot(quasarStyles),
     toastStyles,
+    dialogStyles,
     ...component.styles
   ),
   setup(props, ctx) {
@@ -46,6 +48,7 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
     
     // ?: modifier instance with plugins
     const app = createApp(component)
+      .use(createPinia())
       .use(Quasar)
       .use(Toast, {
         container: asyncGetContainer
@@ -53,7 +56,7 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
 
     // *: dependecies injection
     if (inst) {
-      component.setup(props, ctx)
+      // app._component.setup(props, ctx)
       Object.assign(inst.appContext, app._context)
       Object.assign(inst.provides, app._context.provides)
     }

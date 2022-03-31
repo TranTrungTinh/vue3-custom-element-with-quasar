@@ -1,36 +1,57 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import Layout from '@/layout/default.vue'
+import { GDialog } from 'gitart-vue-dialog'
+
 import ToolBar from '@/components/ToolBar.vue'
-// import { GDialog } from 'gitart-vue-dialog'
-import SidePanel from '@/components/ui/slider/SidePanel.vue';
 import FrameIcon from '@/assets/svg/boy-eyeglasses.svg?component'
 import RimlessIcon from '@/assets/svg/eye-glasses.svg?component'
-import { GModel } from '@/components/customization'
-import { useToast } from "vue-toastification";
+import { GModel, GFrame, GRimTemple, GLens, GLogo } from '@/components/customization'
+import { FavoriteList } from '@/components/favorites'
+import { useEnhancer } from '@/enhancer'
 
 export default defineComponent({
   components: {
     Layout,
     ToolBar,
-    SidePanel,
+    GDialog,
     FrameIcon,
     RimlessIcon,
-    GModel
+    GModel,
+    GFrame,
+    GRimTemple,
+    GLens,
+    GLogo,
+    FavoriteList
   },
   setup (props, { expose }) {
-    const text = ref('Test App work')
+    // *: Define var
+    const currentConfig = ref('')
     const isShow = ref(false)
     const isFrame = ref(false)
-    const toast = useToast();
 
-     function showModal () {
+    // *: Define use
+    const { toast, actions, actionTypes, storeFavorites } = useEnhancer()
+
+    // *: Define method & emit
+    function showConfigType (type) {
+      currentConfig.value = type
       isShow.value = true
     }
-    function closeModal () {
+    function closeConfig () {
+      currentConfig.value = false
       isShow.value = false
     }
+    function doFavorite() {
+      storeFavorites.add()
+      toast.success("Add to favorite successfully");
+    }
 
+    // *: Define computed
+
+    // *: Define watch
+
+    // *: Define expose
     expose({
       logText: () => {
         // console.info(text)
@@ -38,11 +59,14 @@ export default defineComponent({
     })
 
     return {
-      text,
+      actions,
+      actionTypes,
       isFrame,
       isShow,
-      showModal,
-      closeModal,
+      showConfigType,
+      currentConfig,
+      closeConfig,
+      doFavorite,
       triggerPositive () {
         toast("I'm a toast!");
       }
@@ -77,52 +101,16 @@ export default defineComponent({
             style="height: 50px"
           >
             <q-btn
+              v-for="action in actions"
+              :key="action.type"
               class="text-caption"
-              label="モデル"
+              :label="action.label"
               color="primary"
               dense
               outline
               padding="xs md"
               no-wrap
-              @click="showModal"
-            />
-            <q-btn
-              class="text-caption"
-              color="primary"
-              dense
-              padding="xs md"
-              outline
-              label="フレーム"
-              no-wrap
-              @click="triggerPositive"
-            />
-            <q-btn
-              class="text-caption"
-              color="secondary"
-              padding="xs md"
-              dense
-              outline
-              label="リム・テンプル(カラー)"
-              no-wrap
-              @click="closeModal"
-            />
-            <q-btn
-              class="text-caption"
-              color="secondary"
-              padding="xs md"
-              dense
-              outline
-              label="レンズ"
-              no-wrap
-            />
-            <q-btn
-              class="text-caption"
-              color="secondary"
-              padding="xs md"
-              dense
-              outline
-              label="ロゴ"
-              no-wrap
+              @click="showConfigType(action.type)"
             />
           </div>
         </q-scroll-area>
@@ -131,47 +119,17 @@ export default defineComponent({
           style="height: 66px;"
           class="full-width go-bg2"
         >
-          <div
-            class="row no-wrap q-gutter-sm items-center q-px-sm"
-            style="height: 66px"
-          >
-            <div>
-              <q-btn
-                color="primary"
-                round
-                outline
-                size="10px"
-              >
-                保存1
-              </q-btn>
-            </div>
-            <div class="column items-center justify-end full-height">
-              <q-btn
-                color="primary"
-                round
-                size="10px"
-              >
-                保存2
-              </q-btn>
-              <span>
-                <q-badge
-                  color="blue"
-                  rounded
-                />
-              </span>
-            </div>
-          </div>
+          <favorite-list />
         </q-scroll-area>
         <div class="row bg-white q-py-sm">
           <div class="col-4 text-center">
             <q-btn
-              color="red"
-              icon="favorite"
-              padding="xs md"
-              dense
+              color="primary"
+              icon="favorite_border"
               outline
               class="text-caption"
               label="保存"
+              @click="doFavorite"
             />
           </div>
           <div class="col-4 text-center">
@@ -181,24 +139,42 @@ export default defineComponent({
             <q-btn
               icon="shopping_cart"
               color="primary"
-              padding="xs md"
               class="text-caption"
-              dense
               label="カート"
             />
           </div>
         </div>
       </section>
-      <side-panel
-        v-model="isShow"
-        no-close
-        hide-close-btn
-        side="bottom"
-        height="200px"
-      >
-        <g-model />
-      </side-panel>
     </template>
+    <g-dialog
+      v-model="isShow"
+      width="100%"
+      transition="custom-from-bottom-transition"
+      local
+    >
+      <div style="height: 35vh;">
+        <g-model
+          v-if="currentConfig === actionTypes.MODEL"
+          @back="closeConfig"
+        />
+        <g-frame
+          v-else-if="currentConfig === actionTypes.FRAME"
+          @back="closeConfig"
+        />
+        <g-rim-temple
+          v-else-if="currentConfig === actionTypes.RIM_TEMPLE"
+          @back="closeConfig"
+        />
+        <g-lens
+          v-else-if="currentConfig === actionTypes.LENS"
+          @back="closeConfig"
+        />
+        <g-logo
+          v-else-if="currentConfig === actionTypes.LOGO"
+          @back="closeConfig"
+        />
+      </div>
+    </g-dialog>
   </Layout>
 </template>
 

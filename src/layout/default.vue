@@ -7,6 +7,12 @@
         <slot name="footer" />
       </div>
     </div>
+    <q-inner-loading
+      :showing="false"
+      label="お待ちください"
+      label-class="text-black"
+      label-style="font-size: 1.5rem"
+    />
   </body>
 </template>
 

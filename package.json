@@ -13,6 +13,7 @@
     "@quasar/extras": "^1.13.4",
     "@vueuse/core": "^8.2.0",
     "gitart-vue-dialog": "^2.0.5",
+    "pinia": "^2.0.12",
     "quasar": "^2.6.2",
     "vue": "^3.2.31",
     "vue-toastification": "^2.0.0-rc.5"

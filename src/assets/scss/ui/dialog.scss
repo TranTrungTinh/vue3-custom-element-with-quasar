@@ -1,0 +1,22 @@
+.custom-rotate-transition {
+  &-enter-from {
+    transform: translate(0, 30px) rotate(20deg);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translate(0, 30px) rotate(10deg);
+    opacity: 0;
+  }
+}
+.custom-from-bottom-transition {
+  &-enter-from {
+    transform: translate(0, 100%);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translate(0, -30%);
+    opacity: 0;
+  }
+}
