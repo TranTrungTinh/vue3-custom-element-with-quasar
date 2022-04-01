@@ -1,4 +1,4 @@
-import { useCustomization, actionTypes } from '@/components/customization/useCustomization'
+import { useCustomization, actionTypes } from '@/hooks/useCustomization'
 import { useToast } from "vue-toastification";
 import { useFavorites } from '@/stores/favorites'
 

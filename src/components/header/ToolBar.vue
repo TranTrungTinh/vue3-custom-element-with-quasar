@@ -30,8 +30,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import FrameIcon from '@/assets/svg/boy-eyeglasses.svg?component'
-import RimlessIcon from '@/assets/svg/eye-glasses.svg?component'
+import { FrameIcon, RimlessIcon } from '@/components'
 
 export default defineComponent({
   name: 'ToolBar',

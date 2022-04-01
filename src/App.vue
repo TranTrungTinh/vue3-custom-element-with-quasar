@@ -1,13 +1,9 @@
 <script>
 import { defineComponent, ref } from 'vue'
-import Layout from '@/layout/default.vue'
-import { GDialog } from 'gitart-vue-dialog'
-
-import ToolBar from '@/components/ToolBar.vue'
-import FrameIcon from '@/assets/svg/boy-eyeglasses.svg?component'
-import RimlessIcon from '@/assets/svg/eye-glasses.svg?component'
-import { GModel, GFrame, GRimTemple, GLens, GLogo } from '@/components/customization'
-import { FavoriteList } from '@/components/favorites'
+import { 
+  Layout, ToolBar, GDialog, FrameIcon, RimlessIcon, FavoriteList,
+  GModel, GFrame, GRimTemple, GLens, GLogo 
+} from '@/components'
 import { useEnhancer } from '@/enhancer'
 
 export default defineComponent({

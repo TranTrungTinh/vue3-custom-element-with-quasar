@@ -17,7 +17,7 @@ export const defineCustomElement = (component) => VueDefineCustomElement({
     dialogStyles,
     ...component.styles
   ),
-  setup(props, ctx) {
+  setup(props) {
     // *: Attach link loaders
     linksLoader([
       {
