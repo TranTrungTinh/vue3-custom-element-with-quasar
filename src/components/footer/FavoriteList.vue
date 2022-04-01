@@ -7,7 +7,10 @@
     <div
       v-for="(item, index) in storeFavorites.favorites"
       :key="item.id"
-      :class="{ 'column items-center justify-end full-height': item.id === storeFavorites.currentId }"
+      :class="{
+        'column items-center justify-end full-height':
+          item.id === storeFavorites.currentId,
+      }"
     >
       <q-btn
         color="primary"
@@ -40,23 +43,24 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { useEnhancer } from '@/enhancer'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useEnhancer } from "@/enhancer";
 
 export default defineComponent({
-  name: 'FavoriteList',
+  name: "FavoriteList",
   setup() {
-    const { storeFavorites } = useEnhancer()
+    const { storeFavorites } = useEnhancer();
 
     function selected(id) {
-      storeFavorites.setSelected(id)
+      storeFavorites.setSelected(id);
     }
 
     return {
       storeFavorites,
-      selected
-    }
-  }
-})
-</script>a
+      selected,
+    };
+  },
+});
+</script>
+a

@@ -3,14 +3,20 @@
     <div class="go-toolbar__segment shadow-1">
       <div
         v-ripple
-        :class="['segment--item relative-position q-pa-sm cursor-pointer', { 'bg-primary': modelValue }]"
+        :class="[
+          'segment--item relative-position q-pa-sm cursor-pointer',
+          { 'bg-primary': modelValue },
+        ]"
         @click="toggle(true)"
       >
         <frame-icon :class="['go-icon', { 'text-white': modelValue }]" />
       </div>
       <div
         v-ripple
-        :class="['segment--item relative-position q-pa-sm cursor-pointer', { 'bg-primary': !modelValue }]"
+        :class="[
+          'segment--item relative-position q-pa-sm cursor-pointer',
+          { 'bg-primary': !modelValue },
+        ]"
         @click="toggle(false)"
       >
         <rimless-icon :class="['go-icon', { 'text-white': !modelValue }]" />
@@ -28,31 +34,30 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { FrameIcon, RimlessIcon } from '@/components'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { FrameIcon, RimlessIcon } from "@/components";
 
 export default defineComponent({
-  name: 'ToolBar',
+  name: "ToolBar",
   components: { FrameIcon, RimlessIcon },
-  props: {  
+  props: {
     modelValue: {
       type: Boolean,
       default: () => false,
       required: true,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
 
-  setup (_, { emit }) {
-
-    const toggle = value => {
-      emit('update:modelValue', value);
-    }
+  setup(_, { emit }) {
+    const toggle = (value) => {
+      emit("update:modelValue", value);
+    };
 
     return {
-      toggle
-    }
-  }
-})
+      toggle,
+    };
+  },
+});
 </script>

@@ -1,10 +1,19 @@
-<script>
-import { defineComponent, ref } from 'vue'
-import { 
-  Layout, ToolBar, GDialog, FrameIcon, RimlessIcon, FavoriteList,
-  GModel, GFrame, GRimTemple, GLens, GLogo 
-} from '@/components'
-import { useEnhancer } from '@/enhancer'
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import {
+  Layout,
+  ToolBar,
+  GDialog,
+  FrameIcon,
+  RimlessIcon,
+  FavoriteList,
+  GModel,
+  GFrame,
+  GRimTemple,
+  GLens,
+  GLogo,
+} from "@/components";
+import { useEnhancer } from "@/enhancer";
 
 export default defineComponent({
   components: {
@@ -18,29 +27,35 @@ export default defineComponent({
     GRimTemple,
     GLens,
     GLogo,
-    FavoriteList
+    FavoriteList,
   },
-  setup (props, { expose }) {
+  setup(props, { expose }) {
     // *: Define var
-    const currentConfig = ref('')
-    const isShow = ref(false)
-    const isFrame = ref(false)
+    const currentConfig = ref<string | boolean>('');
+    const isShow = ref(false);
+    const isFrame = ref(false);
 
     // *: Define use
-    const { toast, actions, actionTypes, storeFavorites } = useEnhancer()
+    const { toast, actions, actionTypes, storeFavorites, storeGlobalLoading } = useEnhancer();
 
     // *: Define method & emit
-    function showConfigType (type) {
-      currentConfig.value = type
-      isShow.value = true
+    function showConfigType(type) {
+      currentConfig.value = type;
+      isShow.value = true;
     }
-    function closeConfig () {
-      currentConfig.value = false
-      isShow.value = false
+    function closeConfig() {
+      currentConfig.value = false;
+      isShow.value = false;
     }
     function doFavorite() {
-      storeFavorites.add()
-      toast.success("Add to favorite successfully");
+      storeFavorites.add();
+      toast.success("お気に入りに正常に追加");
+    }
+    function addToCart() {
+      storeGlobalLoading.start()
+      setTimeout(() => {
+        storeGlobalLoading.end()
+      }, 1000)
     }
 
     // *: Define computed
@@ -51,8 +66,8 @@ export default defineComponent({
     expose({
       logText: () => {
         // console.info(text)
-      }
-    })
+      },
+    });
 
     return {
       actions,
@@ -63,12 +78,10 @@ export default defineComponent({
       currentConfig,
       closeConfig,
       doFavorite,
-      triggerPositive () {
-        toast("I'm a toast!");
-      }
-    }
-  }
-})
+      addToCart,
+    };
+  },
+});
 </script>
 
 <template>
@@ -89,7 +102,7 @@ export default defineComponent({
     <template #footer>
       <section class="go-functions">
         <q-scroll-area
-          style="height: 50px;"
+          style="height: 50px"
           class="full-width"
         >
           <div
@@ -112,7 +125,7 @@ export default defineComponent({
         </q-scroll-area>
 
         <q-scroll-area
-          style="height: 66px;"
+          style="height: 66px"
           class="full-width go-bg2"
         >
           <favorite-list />
@@ -137,6 +150,7 @@ export default defineComponent({
               color="primary"
               class="text-caption"
               label="カート"
+              @click="addToCart"
             />
           </div>
         </div>
@@ -148,7 +162,7 @@ export default defineComponent({
       transition="custom-from-bottom-transition"
       local
     >
-      <div style="height: 35vh;">
+      <div style="height: 35vh">
         <g-model
           v-if="currentConfig === actionTypes.MODEL"
           @back="closeConfig"

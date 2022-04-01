@@ -11,7 +11,9 @@
           @click="setMode('FRAME')"
         >
           <q-item-section>
-            <q-img src="https://cdn-icons-png.flaticon.com/512/3721/3721763.png" />
+            <q-img
+              src="https://cdn-icons-png.flaticon.com/512/3721/3721763.png"
+            />
             <p class="text-caption text-center q-mb-none">
               フレイム
             </p>
@@ -38,7 +40,7 @@
       </q-card>
     </div>
   </div>
-  <card-scroll 
+  <card-scroll
     v-else
     :title="title"
     :list="list"
@@ -47,63 +49,62 @@
   />
 </template>
 
-<script>
-import { defineComponent, ref, computed } from 'vue'
-import CardScroll from '@/components/ui/card/CardHorizontalScroll.vue'
+<script lang="ts">
+import { defineComponent, ref, computed } from "vue";
+import CardScroll from "@/components/ui/card/CardHorizontalScroll.vue";
 export default defineComponent({
-  name: 'GoModal',
+  name: "GoModal",
   components: { CardScroll },
-  emits: ['ok'],
-  setup (_, { emit }) {
-    const mode = ref('')
+  emits: ["ok"],
+  setup(_, { emit }) {
+    const mode = ref("");
 
     const setMode = (type) => {
-      mode.value = type
-    }
+      mode.value = type;
+    };
 
     const handleBack = () => {
-      mode.value = ''
-    }
+      mode.value = "";
+    };
 
     const handleOk = () => {
-      emit('ok', 'payload')
-    }
+      emit("ok", "payload");
+    };
 
     const title = computed(() => {
       const mapping = {
-        FRAME: 'フレイム',
-        RIMLESS: 'リムレス'
-      }
-      return mapping[mode.value] ?? ''
-    })
+        FRAME: "フレイム",
+        RIMLESS: "リムレス",
+      };
+      return mapping[mode.value] ?? "";
+    });
 
     const list = computed(() => {
-      if (mode.value === 'FRAME') {
+      if (mode.value === "FRAME") {
         return Array.from({ length: 28 }, (v, id) => ({
           id,
-          text: '販売中',
-          url: 'https://cdn-icons-png.flaticon.com/512/3721/3721763.png'
-        }))
+          text: "販売中",
+          url: "https://cdn-icons-png.flaticon.com/512/3721/3721763.png",
+        }));
       }
-      if (mode.value === 'RIMLESS') {
+      if (mode.value === "RIMLESS") {
         return Array.from({ length: 8 }, (v, id) => ({
           id,
-          text: '販売中',
-          url: 'https://cdn-icons-png.flaticon.com/512/149/149456.png'
-        }))
+          text: "販売中",
+          url: "https://cdn-icons-png.flaticon.com/512/149/149456.png",
+        }));
       }
-      return []
-    })
+      return [];
+    });
 
-    
     return {
       mode,
       setMode,
       title,
       list,
       handleBack,
-      handleOk
-    }
-  }
-})
+      handleOk,
+    };
+  },
+});
 </script>

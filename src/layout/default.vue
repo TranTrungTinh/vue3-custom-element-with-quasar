@@ -8,7 +8,7 @@
       </div>
     </div>
     <q-inner-loading
-      :showing="false"
+      :showing="storeGlobalLoading.isLoading"
       label="お待ちください"
       label-class="text-black"
       label-style="font-size: 1.5rem"
@@ -16,9 +16,18 @@
   </body>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useEnhancer } from "@/enhancer";
+
 export default defineComponent({
-  name: 'Default'
-})
+  name: "Default",
+  setup () {
+    const { storeGlobalLoading } = useEnhancer()
+
+    return {
+      storeGlobalLoading
+    }
+  }
+});
 </script>

@@ -1,3 +1,8 @@
+/**
+ * @file vite config
+ * @module vite.config
+ * @author Tinh
+ */
 import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -7,19 +12,19 @@ import svgLoader from 'vite-svg-loader'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    minify: true
-  },
+  root: path.resolve(__dirname),
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   plugins: [
     vue({
       customElement: true,
       reactivityTransform: true,
-      template: { transformAssetUrls }
+      template: {
+        transformAssetUrls 
+      }
     }),
     quasar({
       sassVariables: 'src/assets/scss/variables.scss'
@@ -28,5 +33,10 @@ export default defineConfig({
     eslintPlugin({
       fix: true
     })
-  ]
+  ],
+  build: {
+    cssCodeSplit: false,
+    sourcemap: true,
+    manifest: true,
+  },
 })

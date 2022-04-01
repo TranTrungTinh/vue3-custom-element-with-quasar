@@ -9,11 +9,9 @@
       </q-item-section>
     </q-item>
     <q-separator />
-    <q-scroll-area
-      style="height: calc(100% - 40px - 33px); max-width: 100%;"
-    >
+    <q-scroll-area style="height: calc(100% - 40px - 33px); max-width: 100%">
       <template v-if="!type">
-        <div class=" row no-wrap q-ma-sm">
+        <div class="row no-wrap q-ma-sm">
           <q-card
             v-for="(item, index) in halfFirsts"
             :key="index"
@@ -72,43 +70,47 @@
   </q-card>
 </template>
 
-<script>
-import { defineComponent, computed, toRefs } from 'vue'
-import CardItem from './CardItem.vue'
+<script lang="ts">
+import { defineComponent, computed, toRefs } from "vue";
+import CardItem from "./CardItem.vue";
 
 export default defineComponent({
-  name: 'CardScroll',
+  name: "CardScroll",
   components: {
-    CardItem
+    CardItem,
   },
   props: {
     title: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     type: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
     list: {
       type: Array,
       default: () => [],
-      required: true
-    }
+      required: true,
+    },
   },
-  emits: ['cancle', 'ok'],
-  setup (props, { emit }) {
-    const { list } = toRefs(props)
-    const halfFirsts = computed(() => list.value.slice(0, Math.round(list.value.length / 2)))
-    const halfEnds = computed(() => list.value.slice(Math.round(list.value.length / 2), list.value.length))
+  emits: ["cancle", "ok"],
+  setup(props, { emit }) {
+    const { list } = toRefs(props);
+    const halfFirsts = computed(() =>
+      list.value.slice(0, Math.round(list.value.length / 2))
+    );
+    const halfEnds = computed(() =>
+      list.value.slice(Math.round(list.value.length / 2), list.value.length)
+    );
 
     const handleBack = () => {
-      emit('cancle', 'payload')
-    }
+      emit("cancle", "payload");
+    };
 
     const handleOk = () => {
-      emit('ok', 'payload')
-    }
+      emit("ok", "payload");
+    };
 
     return {
       handleBack,
@@ -116,7 +118,7 @@ export default defineComponent({
       renderList: list,
       halfFirsts,
       halfEnds,
-    }
-  }
-})
+    };
+  },
+});
 </script>

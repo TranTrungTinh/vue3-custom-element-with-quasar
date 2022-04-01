@@ -8,9 +8,7 @@
       <p class="text-caption q-my-xs q-ml-sm">
         {{ item.name }}
       </p>
-      <q-img
-        :src="item.url"
-      />
+      <q-img :src="item.url" />
       <q-toggle
         color="blue"
         label="Blue"
@@ -23,20 +21,20 @@
   </q-item>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent } from "vue";
 export default defineComponent({
-  name: 'CardItem',
+  name: "CardItem",
   props: {
     item: {
       type: Object,
       required: true,
-      default: () => ({})
+      default: () => ({}),
     },
     type: {
       type: String,
-      default: () => ''
+      default: () => "",
     },
-  }
-})
+  },
+});
 </script>
