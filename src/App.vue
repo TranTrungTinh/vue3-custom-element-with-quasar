@@ -4,8 +4,7 @@ import {
   Layout,
   ToolBar,
   GDialog,
-  FrameIcon,
-  RimlessIcon,
+  TryOn,
   FavoriteList,
   GModel,
   GFrame,
@@ -20,8 +19,7 @@ export default defineComponent({
     Layout,
     ToolBar,
     GDialog,
-    FrameIcon,
-    RimlessIcon,
+    TryOn,
     GModel,
     GFrame,
     GRimTemple,
@@ -89,16 +87,7 @@ export default defineComponent({
     <template #header>
       <tool-bar v-model="isFrame" />
     </template>
-    <section class="go-main">
-      <frame-icon
-        v-if="isFrame"
-        class="go-main--icon"
-      />
-      <rimless-icon
-        v-else
-        class="go-main--icon"
-      />
-    </section>
+    <try-on :is-frame="isFrame" />
     <template #footer>
       <section class="go-functions">
         <q-scroll-area

@@ -34,7 +34,7 @@ export const defineCustomElement = (component) =>
       linksLoader(INITIAL_LINKS);
 
       // ?: Make sure instance founded
-      const inst: any = getCurrentInstance() || {};
+      const inst: AnyObject = getCurrentInstance() || {};
 
       // ?: modifier instance with plugins
       const app = createApp(component)
@@ -45,9 +45,11 @@ export const defineCustomElement = (component) =>
         });
 
       // *: dependecies injection
-      // component.setup(props, ctx)
-      Object.assign(inst.appContext, app._context);
-      Object.assign(inst.provides, app._context.provides);
+      if (inst) {
+        // component.setup(props, ctx)
+        Object.assign(inst.appContext, app._context);
+        Object.assign(inst.provides, app._context.provides);
+      }
 
       return () => h(component, props);
     },

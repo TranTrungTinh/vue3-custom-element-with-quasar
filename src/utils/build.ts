@@ -1,9 +1,9 @@
 import { META } from "@/configs/app.config";
 
-const minify = (resource) =>
+const minify = (resource: string) =>
   resource.replace(/^\s+|\r\n|\n|\r|(>)\s+(<)|\s+$/gm, "$1$2");
 
-export const linksLoader = (urls) => {
+export const linksLoader = (urls: { rel: string; href: string }[]) => {
   urls.forEach((url) => {
     const link = document.createElement("link");
     link.rel = url.rel;
@@ -31,6 +31,6 @@ export function asyncGetContainer() {
   });
 }
 
-export const modifyRoot = (strings) => strings.replaceAll(":root", ":host");
+export const modifyRoot = (strings: string) => strings.replaceAll(":root", ":host");
 
-export const styleLoader = (...styles) => styles.map(minify);
+export const styleLoader = (...styles: string[]) => styles.map(minify);

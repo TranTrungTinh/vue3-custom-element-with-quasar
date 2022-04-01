@@ -7,7 +7,7 @@ export const META = Object.freeze({
   appName: "glasson-helloo",
 })
 
-export const INITIAL_LINKS = Object.freeze([
+export const INITIAL_LINKS = [
   {
     rel: "preconnect",
     href: "https://fonts.googleapis.com",
@@ -29,4 +29,4 @@ export const INITIAL_LINKS = Object.freeze([
     rel: "stylesheet",
     href: "https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css",
   }
-])
+]

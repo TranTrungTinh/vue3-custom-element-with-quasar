@@ -7,6 +7,7 @@ import GRimTemple from "@/components/customization/RimTemple.vue";
 import GLens from "@/components/customization/Lens.vue";
 import GLogo from "@/components/customization/Logo.vue";
 import FavoriteList from "@/components/footer/FavoriteList.vue";
+import TryOn from "@/components/try-on/index.vue"
 import Layout from "@/layout/default.vue";
 import { GDialog } from "gitart-vue-dialog";
 
@@ -22,4 +23,5 @@ export {
   FavoriteList,
   Layout,
   GDialog,
+  TryOn
 };
