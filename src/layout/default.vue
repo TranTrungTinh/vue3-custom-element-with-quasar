@@ -8,6 +8,7 @@
       </div>
     </div>
     <q-inner-loading
+      style="z-index: 9999;"
       :showing="storeGlobalLoading.isLoading"
       label="お待ちください"
       label-class="text-black"
@@ -26,7 +27,8 @@ export default defineComponent({
     const { storeGlobalLoading } = useEnhancer()
 
     return {
-      storeGlobalLoading
+      storeGlobalLoading,
+      // fullHeight
     }
   }
 });

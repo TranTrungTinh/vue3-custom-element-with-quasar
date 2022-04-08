@@ -1,5 +1,5 @@
 {
-  "name": "my-vue-app",
+  "name": "hello-app",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -7,15 +7,19 @@
     "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore . --fix",
     "format": "prettier -w -u .",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.13.4",
     "@vueuse/core": "^8.2.0",
+    "axios": "^0.26.1",
+    "body-scroll-lock": "^4.0.0-beta.0",
     "gitart-vue-dialog": "^2.0.5",
     "pinia": "^2.0.12",
     "quasar": "^2.6.2",
     "vue": "^3.2.31",
+    "vue-query": "^1.22.2",
     "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {

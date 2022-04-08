@@ -25,8 +25,8 @@ export const INITIAL_LINKS = [
     href: "https://fonts.googleapis.com/css?family=Material+Icons",
   },
   // ? Css reset
-  {
-    rel: "stylesheet",
-    href: "https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css",
-  }
+  // {
+  //   rel: "stylesheet",
+  //   href: "https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css",
+  // }
 ]

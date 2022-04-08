@@ -31,12 +31,26 @@ export default defineConfig({
     }),
     svgLoader(),
     eslintPlugin({
-      fix: true
+      fix: true,
+      include: "src/**/*.{js,vue,ts}",
     })
   ],
   build: {
     cssCodeSplit: false,
-    sourcemap: true,
+    minify: true,
     manifest: true,
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("quasar")) {
+              return "vendor_ui";
+            }
+            return "vendor";
+          }
+        },
+      },
+    },
   },
 })

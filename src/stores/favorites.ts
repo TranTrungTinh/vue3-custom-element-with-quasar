@@ -15,14 +15,23 @@ export const useFavorites = defineStore("favorites", {
     currentItem: (state) =>
       state.currentId
         ? state.list.find((item) => item.id === state.currentId)
-        : {},
+        : {} as AnyObject,
   },
   actions: {
-    add() {
-      this.list = [...this.list, { id: uid(), name: "保存" }];
+    add(name: string) {
+      const newItem = { id: uid(), name }
+      this.list = [...this.list, newItem];
+      this.setSelected(newItem.id)
     },
-    remove(id) {
-      this.list = this.list.filter((item) => item.id !== id);
+    removeCurrent() {
+      this.list = this.list.filter((item) => item.id !== this.currentId);
+      this.currentId = null
+    },
+    editCurrent(name: string) {
+      this.list = this.list.map((item) => {
+        if (item.id !== this.currentId) return item
+        return { ...item, name }
+      });
     },
     setSelected(id) {
       this.currentId = id;

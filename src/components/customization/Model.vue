@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!mode"
-    class="row full-height items-center q-col-gutter-md q-px-md"
+    class="row full-height items-center q-col-gutter-md q-pa-md"
   >
     <div class="col-6">
       <q-card class="q-pa-none">

@@ -1,46 +1,38 @@
 <template>
-  <div
-    v-if="storeFavorites.favorites.length"
-    class="row no-wrap q-gutter-sm items-center q-px-sm"
-    style="height: 66px"
-  >
+<div class="row no-wrap">
+  <slot />
+  <q-scroll-area style="height: 66px; flex: 1;" class="go-bg2 flex-block">
     <div
-      v-for="(item, index) in storeFavorites.favorites"
-      :key="item.id"
-      :class="{
-        'column items-center justify-end full-height':
-          item.id === storeFavorites.currentId,
-      }"
+      class="row no-wrap q-gutter-sm items-center q-px-sm"
+      style="height: 66px"
     >
-      <q-btn
-        color="primary"
-        round
-        no-wrap
-        :outline="item.id !== storeFavorites.currentId"
-        size="10px"
-        @click="selected(item.id)"
+      <div
+        v-for="(item) in storeFavorites.favorites"
+        :key="item.id"
+        :class="{
+          'column items-center justify-end full-height':
+            item.id === storeFavorites.currentId,
+        }"
       >
-        {{ item.name }}{{ index + 1 }}
-      </q-btn>
-      <span v-if="item.id === storeFavorites.currentId">
-        <q-badge
+        <q-btn
           color="primary"
-          rounded
-        />
-      </span>
+          round
+          no-wrap
+          :outline="item.id !== storeFavorites.currentId"
+          size="13px"
+          @click="selected(item.id)"
+        >
+          <span class="text-small">
+            {{ item.name }}
+          </span>
+        </q-btn>
+        <span class="text-small" v-if="item.id === storeFavorites.currentId">
+          セレクト
+        </span>
+      </div>
     </div>
-  </div>
-  <div
-    v-else
-    class="column items-center justify-center"
-    style="height: 66px"
-  >
-    <q-icon
-      name="favorite_border"
-      color="red"
-    />
-    <span class="text-caption">お気に入りなし</span>
-  </div>
+  </q-scroll-area>
+</div>
 </template>
 
 <script lang="ts">
@@ -49,18 +41,19 @@ import { useEnhancer } from "@/enhancer";
 
 export default defineComponent({
   name: "FavoriteList",
-  setup() {
+  emits: ['selected'],
+  setup(_, { emit }) {
     const { storeFavorites } = useEnhancer();
 
     function selected(id) {
-      storeFavorites.setSelected(id);
+      emit('selected', id)
     }
 
     return {
       storeFavorites,
-      selected,
+      selected
     };
   },
 });
 </script>
-a
+

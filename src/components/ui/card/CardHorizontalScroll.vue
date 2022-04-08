@@ -9,41 +9,45 @@
       </q-item-section>
     </q-item>
     <q-separator />
-    <q-scroll-area style="height: calc(100% - 40px - 33px); max-width: 100%">
-      <template v-if="!type">
-        <div class="row no-wrap q-ma-sm">
-          <q-card
-            v-for="(item, index) in halfFirsts"
-            :key="index"
-            class="cartItem q-mr-sm"
-          >
-            <card-item :item="item" />
-          </q-card>
+    <!-- height: calc(100% - 40px - 33px);  -->
+    <q-scroll-area :style="{ '--vh': cardContainerHeight, 'height': 'var(--vh, 150px)', 'max-width': '100%' }">
+      <div ref="cardContainer">
+        <div v-show="!type">
+          <div class="row no-wrap q-ma-sm">
+            <q-card
+              v-for="(item, index) in halfFirsts"
+              :key="index"
+              :class="['cartItem q-mr-sm', { 'bg-blue-grey-4': itemActive.id === item.id }]"
+            >
+              <card-item :item="item" @selected="onActive" />
+            </q-card>
+          </div>
+          <div class="row no-wrap q-ma-sm">
+            <q-card
+              v-for="(item, index) in halfEnds"
+              :key="index"
+              :class="['cartItem q-mr-sm', { 'bg-blue-grey-4': itemActive.id === item.id }]"
+            >
+              <card-item :item="item" @selected="onActive" />
+            </q-card>
+          </div>
         </div>
-        <div class="row no-wrap q-ma-sm">
-          <q-card
-            v-for="(item, index) in halfEnds"
-            :key="index"
-            class="cartItem q-mr-sm"
-          >
-            <card-item :item="item" />
-          </q-card>
-        </div>
-      </template>
-      <div
-        v-else
-        class="row no-wrap q-ma-sm"
-      >
-        <q-card
-          v-for="(item, index) in renderList"
-          :key="index"
-          class="q-mr-sm"
+        <div
+          v-show="type"
+          class="row no-wrap q-ma-sm"
         >
-          <card-item
-            :type="type"
-            :item="item"
-          />
-        </q-card>
+          <q-card
+            v-for="(item, index) in renderList"
+            :key="index"
+            :class="['q-mr-sm', { 'bg-blue-grey-4': itemActive.id === item.id }]"
+          >
+            <card-item
+              :type="type"
+              :item="item"
+              @selected="onActive" 
+            />
+          </q-card>
+        </div>
       </div>
     </q-scroll-area>
     <q-card-actions
@@ -64,14 +68,14 @@
         size="12px"
         @click="handleOk"
       >
-        決定
+        {{ okButton }}
       </q-btn>
     </q-card-actions>
   </q-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, toRefs } from "vue";
+import { defineComponent, computed, toRefs, ref, Ref, nextTick } from "vue";
 import CardItem from "./CardItem.vue";
 
 export default defineComponent({
@@ -87,6 +91,10 @@ export default defineComponent({
     type: {
       type: String,
       default: () => "",
+    },
+    okButton: {
+      type: String,
+      default: () => "決定",
     },
     list: {
       type: Array,
@@ -104,6 +112,14 @@ export default defineComponent({
       list.value.slice(Math.round(list.value.length / 2), list.value.length)
     );
 
+    const itemActive: AnyObject = ref({})
+    const cardContainerHeight = ref('180px')
+    const cardContainer: Ref<HTMLElement | null> = ref(null);
+
+    const onActive = item => {
+      itemActive.value = item
+    }
+
     const handleBack = () => {
       emit("cancle", "payload");
     };
@@ -112,12 +128,23 @@ export default defineComponent({
       emit("ok", "payload");
     };
 
+    nextTick(() => {
+      setTimeout(() => {
+        const gutter = 24;
+        cardContainerHeight.value = (cardContainer?.value?.clientHeight ?? 0) + gutter + 'px'
+      }, 500)
+    })
+
     return {
       handleBack,
       handleOk,
       renderList: list,
       halfFirsts,
       halfEnds,
+      onActive,
+      itemActive,
+      cardContainer,
+      cardContainerHeight
     };
   },
 });

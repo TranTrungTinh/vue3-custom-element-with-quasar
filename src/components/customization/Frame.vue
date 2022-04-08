@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!mode"
-    class="row full-height items-center q-px-lg"
+    class="row full-height q-gutter-y-md items-center q-pa-md"
   >
     <q-btn
       color="primary"
@@ -27,6 +27,7 @@
   <card-scroll
     v-else
     :title="title"
+    :ok-button="okTextButton"
     :list="list"
     @ok="handleOk"
     @cancle="handleBack"
@@ -42,25 +43,41 @@ export default defineComponent({
   emits: ["ok"],
   setup(_, { emit }) {
     const mode = ref("");
+    const isSettingFront = ref(true)
 
     const setMode = (type) => {
       mode.value = type;
     };
 
     const handleBack = () => {
-      mode.value = "";
+      if (!isSettingFront.value) {
+        isSettingFront.value = true
+      } else {
+        mode.value = "";
+      }
     };
 
     const handleOk = () => {
-      emit("ok", "payload");
+      if (isSettingFront.value) {
+        isSettingFront.value = false
+      } else {
+        emit("ok", "payload");
+      }
     };
 
     const title = computed(() => {
       const mapping = {
-        COLOR: "クリア - カラー - 表面",
-        IMAGE: "イラスト - 表面",
+        COLOR: "クリア - カラー - ",
+        IMAGE: "イラスト - ",
       };
-      return mapping[mode.value] ?? "";
+      if (isSettingFront.value) {
+        return mapping[mode.value] + '表面'
+      }
+      return mapping[mode.value] + '裏面';
+    });
+
+    const okTextButton = computed(() => {
+      return isSettingFront.value ? '次へ' : "決定";
     });
 
     const list = computed(() => {
@@ -85,6 +102,7 @@ export default defineComponent({
       mode,
       setMode,
       title,
+      okTextButton,
       list,
       handleBack,
       handleOk,

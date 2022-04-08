@@ -6,6 +6,7 @@ import {
 } from "vue";
 import { Quasar } from "quasar";
 import { createPinia } from "pinia";
+import { VueQueryPlugin } from "vue-query";
 import Toast from "vue-toastification";
 import { INITIAL_LINKS } from "@/configs/app.config";
 
@@ -18,27 +19,33 @@ import {
   styleLoader,
   modifyRoot,
   asyncGetContainer,
+  cssCompiler
 } from "@/utils/build";
 
 export const defineCustomElement = (component) =>
   VueDefineCustomElement({
     props: component.props,
-    styles: styleLoader(
-      modifyRoot(quasarStyles),
-      toastStyles,
-      dialogStyles,
-      ...component.styles
-    ),
     setup(props) {
       // *: Attach link loaders
       linksLoader(INITIAL_LINKS);
 
       // ?: Make sure instance founded
       const inst: AnyObject = getCurrentInstance() || {};
+      
+      const cssText = styleLoader(
+        modifyRoot(quasarStyles),
+        toastStyles,
+        dialogStyles,
+        ...component.styles
+      ).join('')
+
+      // !: Enhancer CSS with custom compiler
+      cssCompiler(cssText)
 
       // ?: modifier instance with plugins
       const app = createApp(component)
         .use(createPinia())
+        .use(VueQueryPlugin)
         .use(Quasar)
         .use(Toast, {
           container: asyncGetContainer,

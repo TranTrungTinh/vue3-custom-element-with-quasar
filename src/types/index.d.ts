@@ -10,3 +10,10 @@ declare type AnyObject = {
 }
 
 declare type ArrayOrNot<T> = T | Array<T>;
+
+declare type GlassOnResult<T = any> = {
+  status: GlassOnResponseStatus.Success
+  message: string
+  result: T
+}
+  
