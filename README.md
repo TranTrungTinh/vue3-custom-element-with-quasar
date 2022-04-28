@@ -1,6 +1,6 @@
 [defineCustomElement]: https://v3.vuejs.org/guide/web-components.html#definecustomelement
 [custom element]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
-[demo]: https://vue-custom-element-example.netlify.app
+[demo]: https://glasson-helloo.web.app
 
 # Vue 3 + Vite Custom Elements with Plugins
 
