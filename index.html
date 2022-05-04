@@ -4,16 +4,43 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>App</title>
   </head>
   <body>
     <glasson-helloo></glasson-helloo>
     <script>
-      // const button = document.getElementById('button')
-      // button.addEventListener('click', () => {
-      //   const el = document.querySelector('glasson-helloo')
-      //   el._instance.exposed.logText()
-      // })
+      const favoriteList = [
+        {
+          modelName: [
+            'rimless_square',
+            'frame_rapheal',
+            'frame_janne'
+          ],
+          frameColor: 'blue_1',
+          templeColor: 'silver_bronze',
+          lensColor: 'normal_fair_ocher_10f',
+          logoFrontColor: 'black',
+          logoBackColor: 'black',
+          bridgeName: 'bridge_1',
+          thumbnailUrl: 'urlLink'
+        }
+      ]
+
+      const inputData = JSON.stringify({
+        favoriteList
+      })
+
+      const _instance = document.querySelector('glasson-helloo')
+      _instance.setAttribute('inputdata', inputData)
+
+      _instance.addEventListener('favoriteListUpdated', (event) => {
+        const _data = event.detail
+        console.info('[event:favoriteListUpdated]', _data)
+      })
+      _instance.addEventListener('addToCart', (event) => {
+        const _data = event.detail
+        console.info('[event:addToCart]', _data)
+      })
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>

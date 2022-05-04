@@ -1,42 +1,21 @@
 <template>
-  <div
-    v-if="storeFavorites.favorites.length"
-    class="row no-wrap q-gutter-sm items-center q-px-sm"
-    style="height: 66px"
-  >
-    <div
-      v-for="(item, index) in storeFavorites.favorites"
-      :key="item.id"
-      :class="{ 'column items-center justify-end full-height': item.id === storeFavorites.currentId }"
-    >
-      <q-btn
-        color="primary"
-        round
-        no-wrap
-        :outline="item.id !== storeFavorites.currentId"
-        size="10px"
-        @click="selected(item.id)"
+  <div>
+    <q-toolbar class="bg-primary text-white shadow-2">
+      <q-toolbar-title>Favorite List</q-toolbar-title>
+    </q-toolbar>
+    <q-scroll-area style="height: 500px; width: 100%;">
+      <div
+        v-for="(item, index) in storeFavorites.favorites"
+        :key="index"
+        class="q-pa-sm"
       >
-        {{ item.name }}{{ index + 1 }}
-      </q-btn>
-      <span v-if="item.id === storeFavorites.currentId">
-        <q-badge
-          color="primary"
-          rounded
-        />
-      </span>
-    </div>
-  </div>
-  <div
-    v-else
-    class="column items-center justify-center"
-    style="height: 66px"
-  >
-    <q-icon
-      name="favorite_border"
-      color="red"
-    />
-    <span class="text-caption">お気に入りなし</span>
+        <q-item-section>
+          <p>item {{ index + 1 }}</p>
+          <pre>{{ item }}</pre>
+        </q-item-section>
+        <q-separator />
+      </div>
+    </q-scroll-area>
   </div>
 </template>
 
