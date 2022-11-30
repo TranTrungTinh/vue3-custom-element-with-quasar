@@ -1,0 +1,44 @@
+{
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true
+    }
+  },
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "types": [
+      "node",
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "./src/@types"
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "src/*": ["src/*"],
+      "/src/*": ["src/*"],
+      "~/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
+}

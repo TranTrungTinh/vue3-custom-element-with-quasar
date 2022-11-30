@@ -1,23 +1,58 @@
-[defineCustomElement]: https://v3.vuejs.org/guide/web-components.html#definecustomelement
-[custom element]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
-[demo]: https://glasson-helloo.web.app
+## `Vue 3.x build web component + Vite 3.x + quasar 2.x + Windi starter ⚡`
 
-# Vue 3 + Vite Custom Elements with Plugins
+**offical quasar vite cli is release.🌹** ,and you can go to official web site for more detail. then this branch will be
+the default branch. then some of the third part will migrate to this branch later.
 
-This package is an example on how to package a [custom element] by using the [`defineCustomElement`][defineCustomElement] API in Vue 3.
+- [x] - [@quasar/vite-plugin](https://quasar.dev/start/vite-plugin) [official released]
+- [x] - [quasar 2.x](https://github.com/quasarframework/quasar)
+- [x] - [vite 3.x](https://github.com/vitejs/vite)
 
-In this case, the `vue ^3.2`, `vite ^2.8` and `quasar ^2.6` dependencies are externalized to
-reduce the package size and ensure it uses the same versions as in the host app.
+This starter template also includes an plain :
 
-## Demo 🚀
+- [x] - [pinia](https://github.com/vuejs/pinia)[Intuitive, type safe and flexible Store for Vue]
+- [x] - [UnoCss](https://github.com/antfu/unocss)[The instant on-demand Atomic CSS engine. and next architecture for windi css v4]
+- [x] - [vite-plugin-vue-i18n](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n)[vue-i18n-next plugin for vite]
 
-[Visit the live demo][demo] to see the custom element in action.
+## Out of box functions
 
-## Development 👨‍💻
+- [x] - Vue 3 build web-component with custom third party UI frameword
+- [x] - Pina as default state management
+- [x] - I18n translate tool using yaml file
 
-- <kbd>yarn dev</kbd>: start the Vite.js build process in `watch` mode
+## FAQ
 
-## Publish 📦
+1. why not use [Windi CSS](https://github.com/windicss/windicss) or [Tailwind css](https://github.com/tailwindlabs/tailwindcss)?
+   - because Unocss is much more powerful than windi css[windi css is master faster than **tailwind**] but provide consistent api.
 
-- <kbd>yarn build</kbd>: build the package
-- <kbd>yarn serve</kbd>: preview the package
+## TODO
+
+some of the other are existed to use for improving your efficiency when use vue. they are waiting for discovered.
+
+## Checklist
+
+When you use this template, try follow the checklist to update your info properly
+
+- [ ] Change the name and version in `package.json`
+- [ ] Change the title in `index.html`
+- [ ] Change the hostname in `vite.config.ts`
+- [ ] Change the favicon in `public`
+- [ ] Clean up the READMEs and remove routes
+
+And, enjoy :)
+
+## HOW TO USE
+
+pnpm is recommended to use. also you use npm two.
+
+```shell
+npm i -g pnpm
+pnpm install
+pnpm run dev
+```
+
+or
+
+```shell
+npm install
+npm run dev
+```
