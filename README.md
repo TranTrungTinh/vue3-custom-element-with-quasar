@@ -1,11 +1,33 @@
-## `Vue 3.x build web component + Vite 3.x + quasar 2.x + Windi starter ⚡`
+<!-- [![Contributors][contributors-shield]][contributors-url]
+[![Stargazers][stars-shield]][stars-url] -->
+<!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/004ac541-7cd3-426f-b752-6025b75ddebb/deploy-status)](https://app.netlify.com/sites/vite-vue3-router4-tailwind-starter/deploys) -->
+<a href="https://app.netlify.com/sites/vite-vue3-router4-tailwind-starter/deploys"  rel="noopener noreferrer"><img src="https://img.shields.io/netlify/004ac541-7cd3-426f-b752-6025b75ddebb?style=for-the-badge" alt="Netlify Status">
+<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/stars"  rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues">
+</a><a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/fork" rel="noopener noreferrer"><img src="https://img.shields.io/github/forks/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="GitHub forks"></a>
+<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/blob/master/LICENSE" rel="noopener noreferrer"><img src="https://img.shields.io/apm/l/vim-mode?style=for-the-badge" alt="license"></a>
+<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/blob/master/issues"  rel="noopener noreferrer"><img src="https://img.shields.io/github/issues/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues"></a>
 
-**offical quasar vite cli is release.🌹** ,and you can go to official web site for more detail. then this branch will be
-the default branch. then some of the third part will migrate to this branch later.
+<!--
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
+
+<p align="center">
+  <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
+    <img width="180" height="100" src="https://vitejs.dev/logo.svg" alt="Vite logo">
+  </a>
+  <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
+    <img width="100" height="100" src="https://vuejs.org/images/logo.png" alt="Vue logo">
+  </a>
+</p>
+
+# Vue 3.4 build web component + Vite 5.x + quasar 2.x + Quasar 2.x + UnoCss starter ⚡
+
+The official quasar vite cli is release.🌹 ,and you can go to official web site for more detail. then this branch will be the default branch. then some of the third part will migrate to this branch later.
+
+**This starter template includes:**
 
 - [x] - [@quasar/vite-plugin](https://quasar.dev/start/vite-plugin) [official released]
 - [x] - [quasar 2.x](https://github.com/quasarframework/quasar)
-- [x] - [vite 3.x](https://github.com/vitejs/vite)
+- [x] - [vite 5.x](https://github.com/vitejs/vite)
 
 This starter template also includes an plain :
 
@@ -26,7 +48,7 @@ This starter template also includes an plain :
 
 ## TODO
 
-some of the other are existed to use for improving your efficiency when use vue. they are waiting for discovered.
+Some of the other are existed to use for improving your efficiency when use vue. they are waiting for discovered.
 
 ## Checklist
 
@@ -56,3 +78,33 @@ or
 npm install
 npm run dev
 ```
+
+## 🖥️ Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/)
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
+## ✏️ Authors
+
+[@trantrungtinh](https://github.com/TranTrungTinh)
+
+## 🚀 Installation
+
+Install this project with pnpm
+
+<!-- ```bash
+  npm install my-project
+  cd my-project
+``` -->
+
+## 💻 Tech Stack
+
+**Client:** Vue, Vite, Vueuse, Pinia, UnoCSS
+
+## 🤙 Support
+
+For support, email trantrungtinh4954@gmail.com
+
+## 🚩 License
+
+Distributed under the [MIT] License. See `LICENSE.txt` for more information.

@@ -1,0 +1,116 @@
+.vsp-wrapper {
+  .vsp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition-property: opacity;
+  }
+  .vsp {
+    position: fixed;
+    transition-property: transform;
+    &--right-side,
+    &--left-side {
+      top: 0;
+      height: 100%;
+    }
+    &--right-side {
+      right: 0;
+      left: unset;
+      transform: translateX(100%);
+    }
+    &--left-side {
+      right: unset;
+      left: 0;
+      transform: translateX(-100%);
+    }
+    &--bottom-side {
+      bottom: 0;
+      left: 50%;
+      width: 390px;
+      transform: translate(-50%, 100%);
+    }
+    &--top-side {
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateY(-100%);
+    }
+    &__header,
+    &__body,
+    &__footer {
+      overflow: auto;
+    }
+    &__body {
+      position: relative;
+      height: 100%;
+    }
+  }
+  &--active {
+    > .vsp {
+      &--right-side,
+      &--left-side {
+        transform: translateX(0);
+      }
+      &--top-side,
+      &--bottom-side {
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}
+
+.vsp-close {
+  $this: &;
+  // position: absolute;
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  border-radius: 50%;
+  transition: background-color 0.1s;
+  transform: scale(.7);
+  &:hover {
+    background: #f7f7f7;
+  }
+  &__x {
+    position: relative;
+    top: 8px;
+    left: -1px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    &::before,
+    &::after {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      content: ' ';
+      background-color: #777;
+    }
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+    #{$this}:active & {
+      top: 8px;
+      right: 8px;
+    }
+  }
+  &:active {
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    background: #f1f1f1;
+  }
+}

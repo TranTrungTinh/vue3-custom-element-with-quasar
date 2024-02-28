@@ -1,0 +1,19 @@
+// Mobile <--> iPad <-->PC
+// 0 - 755 <-->756-1199 <-->1200
+@mixin respond($breakpoint) {
+  @if $breakpoint==mobile {
+    @media only screen and (max-width: 755px) {
+      @content;
+    }
+  }
+  @if $breakpoint==ipad {
+    @media only screen and (min-width: 756px) and (max-width: 1199px) {
+      @content;
+    }
+  }
+  @if $breakpoint==desktop {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+}

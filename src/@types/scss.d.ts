@@ -1,9 +1,9 @@
-interface ICSSModuleExport {
-  [className: string]: string
+declare module '*.scss?inline' {
+  const content: string
+  export default content
 }
 
-declare const cssModuleExport: ICSSModuleExport
-
 declare module '*.scss' {
-  export = cssModuleExport
+  const content: string
+  export default content
 }

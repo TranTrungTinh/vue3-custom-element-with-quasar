@@ -1,0 +1,191 @@
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+.g-dialog-overlay {
+  // rgba(33, 33, 33, 0.46)
+  --overlay-bg: var(--g-dialog-overlay-bg, transparent);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  background: var(--6eaca59a);
+  z-index: 200;
+}
+.g-dialog-overlay--active {
+  pointer-events: auto;
+}
+.g-dialog-overlay--local {
+  position: absolute;
+}
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+}
+.fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  -webkit-transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  -moz-transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.g-dialog-content {
+  --content-bg: var(--g-dialog-content-bg, #fff);
+  --content-border-radius: var(--g-dialog-content-border-radius, 0px);
+  --content-shadow: var(
+    --g-dialog-content-shadow,
+    0 11px 15px -7px rgb(0 0 0 / 20%),
+    0 24px 38px 3px rgb(0 0 0 / 14%),
+    0 9px 46px 8px rgb(0 0 0 / 12%)
+  );
+  pointer-events: auto;
+  overflow-y: auto;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  background: var(--889a571a);
+  border-radius: var(--023a843a);
+
+  @include respond(mobile) {
+    max-width: 100%;
+  }
+
+  @include respond(ipad) {
+    max-width: 100%;
+  }
+
+  @include respond(desktop) {
+    max-width: 769px;
+  }
+}
+.g-dialog-content:not(.g-dialog-content--depressed):not(.g-dialog-content--fullscreen) {
+  box-shadow: var(--content-shadow);
+}
+.g-dialog-content:not(.g-dialog-content--fullscreen) {
+  max-height: 100%;
+  // margin-bottom: 47px;
+}
+.g-dialog-content--scrollable {
+  display: flex;
+}
+.g-dialog-content--fullscreen {
+  height: 100%;
+  border-radius: 0;
+}
+.g-dialog-frame {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  outline: none;
+  pointer-events: none;
+  z-index: 201;
+
+  @include respond(mobile) {
+    justify-content: center;
+  }
+
+  @include respond(ipad) {
+    justify-content: center;
+  }
+}
+.g-dialog-frame--local {
+  position: absolute;
+}
+.g-dialog-transition {
+  opacity: 0;
+}
+.g-dialog-transition-enter-active,
+.g-dialog-transition-leave-active {
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 0.3s;
+}
+.g-dialog-transition-enter-from,
+.g-dialog-transition-leave-to {
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  opacity: 0;
+}
+
+.custom-rotate-transition {
+  &-enter-from {
+    transform: translate(0, 30px) rotate(20deg);
+    -webkit-transform: translate(0, 30px) rotate(20deg);
+    -moz-transform: translate(0, 30px) rotate(20deg);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translate(0, 30px) rotate(10deg);
+    -webkit-transform: translate(0, 30px) rotate(10deg);
+    -moz-transform: translate(0, 30px) rotate(10deg);
+    opacity: 0;
+  }
+}
+.custom-from-bottom-transition {
+  &-enter-from {
+    transform: translate(0, 100%);
+    -webkit-transform: translate(0, 100%);
+    -moz-transform: translate(0, 100%);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translate(0, 30%);
+    -webkit-transform: translate(0, 30%);
+    -moz-transform: translate(0, 30%);
+    opacity: 0;
+  }
+}
+
+.dialog-blur {
+  --g-dialog-content-bg: rgba(226, 226, 226, 0.9);
+}
+
+.dialog-grey {
+  --g-dialog-content-bg: rgba(226, 226, 226, 0.9); // rgba(255, 255, 255, 0.5);
+}
+
+.dialog-white {
+  --g-dialog-content-bg: rgba(255, 255, 255, 1);
+}
+
+.dialog-end {
+  align-self: flex-end;
+}
+
+.dialog-top {
+  align-self: flex-start;
+}
+
+.dialog-width {
+  max-width: clamp(30vw, 90vw, 500px);
+}
+
+.dialog-carousel {
+  max-width: clamp(30vw, 90vw, 374px);
+  border-radius: 12px;
+}
+
+.dialog-share {
+  max-width: clamp(24vw, 70vw, 260px);
+  border-radius: 12px;
+}
+
+.dialog-preview {
+  max-width: clamp(50vw, 90vw, 600px);
+  border-radius: 12px;
+}
