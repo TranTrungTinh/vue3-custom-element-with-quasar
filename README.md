@@ -1,11 +1,10 @@
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url] -->
 <!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/004ac541-7cd3-426f-b752-6025b75ddebb/deploy-status)](https://app.netlify.com/sites/vite-vue3-router4-tailwind-starter/deploys) -->
-<a href="https://app.netlify.com/sites/vite-vue3-router4-tailwind-starter/deploys"  rel="noopener noreferrer"><img src="https://img.shields.io/netlify/004ac541-7cd3-426f-b752-6025b75ddebb?style=for-the-badge" alt="Netlify Status">
-<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/stars"  rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues">
-</a><a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/fork" rel="noopener noreferrer"><img src="https://img.shields.io/github/forks/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="GitHub forks"></a>
-<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/blob/master/LICENSE" rel="noopener noreferrer"><img src="https://img.shields.io/apm/l/vim-mode?style=for-the-badge" alt="license"></a>
-<a href="https://github.com/swaubhik/vite-vue3-router4-tailwind-starter/blob/master/issues"  rel="noopener noreferrer"><img src="https://img.shields.io/github/issues/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues"></a>
+<a href="https://github.com/TranTrungTinh/vue3-custom-element-with-quasar/stars"  rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues">
+</a><a href="https://github.com/TranTrungTinh/vue3-custom-element-with-quasar/fork" rel="noopener noreferrer"><img src="https://img.shields.io/github/forks/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="GitHub forks"></a>
+<a href="https://github.com/TranTrungTinh/vue3-custom-element-with-quasar/blob/master/LICENSE" rel="noopener noreferrer"><img src="https://img.shields.io/apm/l/vim-mode?style=for-the-badge" alt="license"></a>
+<a href="https://github.com/TranTrungTinh/vue3-custom-element-with-quasar/blob/master/issues"  rel="noopener noreferrer"><img src="https://img.shields.io/github/issues/swaubhik/vite-vue3-router4-tailwind-starter?style=for-the-badge" alt="issues"></a>
 
 <!--
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
